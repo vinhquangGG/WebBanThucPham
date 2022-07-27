@@ -1,0 +1,81 @@
+@model Du_An.Models.Page
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-controller="Home" asp-action="Index" asp class="breadcrumb-item"><i
+                    class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-controller="AdminPage" asp-action="Index">Danh sách Page</a>
+            <span class="breadcrumb-item active">Thông tin Page: @Model.PageName</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="product-info-table m-t-20">
+                <tbody>
+                    <tr>
+                        <td>ID:</td>
+                        <td>@Model.PageId</td>
+                    </tr>
+                    <tr>
+                        <td>Tên Page:</td>
+                        <td>@Model.PageName</td>
+                    </tr>
+                    <tr>
+                        <td>Ảnh đại diện:</td>
+                        <td> <img width="200px" height="200px" src="~/images/pages/@Model.Thumb" alt="@Model.Title">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Active:</td>
+
+                        <td>
+                            @if (Model.Published)
+                            {
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" id="switch-1" checked="" disabled>
+                                    <label for="switch-1"></label>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" id="switch-2" disabled>
+                                    <label for="switch-2"></label>
+                                </div>
+                            }
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ngày tạo:</td>
+                        <td> @Model.CreatedDate</td>
+                    </tr>
+                    <tr>
+                        <td>Tiêu đề:</td>
+                        <td> @Model.Title</td>
+                    </tr>
+                    <tr>
+                        <td>MetaDesc:</td>
+                        <td> @Model.MetaDesc</td>
+                    </tr>
+                    <tr>
+                        <td>MetaKey:</td>
+                        <td> @Model.MetaKey</td>
+                    </tr>
+                    <tr>
+                        <td>Alias:</td>
+                        <td> @Model.Alias</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

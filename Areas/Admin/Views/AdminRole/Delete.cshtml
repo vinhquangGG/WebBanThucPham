@@ -1,0 +1,46 @@
+@model Du_An.Models.Role
+
+@{
+    ViewData["Title"] = "Xóa quyền truy cập";
+}
+<div>
+    <div class="page-header">
+        <div class="header-sub-title">
+            <nav class="breadcrumb breadcrumb-dash">
+                <a asp-controller="Home" asp-action="Index" asp class="breadcrumb-item"><i
+                        class="anticon anticon-home m-r-5"></i>Home</a>
+                <a class="breadcrumb-item" asp-controller="AdminRole" asp-action="Index">Danh sách quyền truy cập</a>
+                <span class="breadcrumb-item active">Xóa quyền truy cập</span>
+            </nav>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="product-info-table m-t-20">
+                <tbody>
+                    <tr>
+                        <td>ID:</td>
+                        <td>@Model.RoleId</td>
+                    </tr>
+                    <tr>
+                        <td>Tên vai trò:</td>
+                        <td>@Model.RoleName</td>
+                    </tr>
+                    <tr>
+                        <td>Mô tả:</td>
+                        <td> @Model.Description</td>
+                    </tr>
+                    <tr>
+                        <td>Xác nhận xóa:</td>
+                        <td>
+                            <form asp-action="Delete">
+                                <input type="hidden" asp-for="RoleId" />
+                                <input type="submit" value="Xóa" class="btn btn-danger" />
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

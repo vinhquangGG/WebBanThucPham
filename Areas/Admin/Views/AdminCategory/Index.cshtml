@@ -1,0 +1,69 @@
+@model IEnumerable<Du_An.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Danh mục sản phẩm</h1>
+
+<p>
+    <a asp-action="Create">Thêm mới danh mục</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CatName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ordering)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Published)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alias)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CatName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ordering)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Published)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Alias)
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-tone m-r-5" asp-controller="AdminCategory" asp-action="Details"
+                    asp-route-id="@item.CatId">Xem</a>
+                    <a class="btn btn-secondary btn-tone m-r-5" asp-controller="AdminCategory" asp-action="Edit"
+                    asp-route-id="@item.CatId">Sửa</a>
+                    <a class="btn btn-danger btn-tone m-r-5" asp-controller="AdminCategory" asp-action="Delete"
+                    asp-route-id="@item.CatId">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

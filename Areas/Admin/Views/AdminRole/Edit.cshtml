@@ -1,0 +1,28 @@
+@model Du_An.Models.Role
+
+@{
+    ViewData["Title"] = "Chỉnh sửa quyền truy cập";
+}
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-controller="Home" asp-action="Index" asp class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-controller="AdminRole" asp-action="Index">Danh sách quyền truy cập</a>
+            <span class="breadcrumb-item active">Thông tin quyền truy cập</span>
+        </nav>
+    </div>
+</div>
+<form asp-action="Edit">
+    <div class="form-group col-md-6">
+        <label>Tên vai trò</label>
+        <input type="text" class="form-control" asp-for="RoleName" id="inputAddress2" placeholder="Tên vai trò">
+    </div>
+    <div class="form-group col-md-6">
+        <label>Mô tả</label>
+        <input type="text" class="form-control" asp-for="Description" id="inputAddress2" placeholder="Mô tả">
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Lưu thông tin" class="btn btn-primary"/>
+    </div>
+</form>
+

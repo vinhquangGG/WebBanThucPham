@@ -1,0 +1,229 @@
+@using PagedList.Core.Mvc;
+@model PagedList.Core.IPagedList<Du_An.Models.Product>
+@{
+    ViewData["Title"] = "Shop - " + ViewBag.CurrentPage;
+    Layout = "_Layout";
+    List<Product> lsP = ViewBag.SP;
+    int pageCurrent =  ViewBag.CurrentPage;
+    int pageNext = pageCurrent + 1;
+    List<Category> lsC = ViewBag.Category;
+}
+<main class="main-content">
+            <div class="breadcrumb-area breadcrumb-height" data-bg-image="https://wallpaperaccess.com/full/2329942.jpg">
+                <div class="container h-100">
+                    <div class="row h-100">
+                        <div class="col-lg-12">
+                            <div class="breadcrumb-item">
+                                <h1 style="color: white;" class="breadcrumb-heading">Glory Shop</h1>
+                                <ul>
+                                    <li>
+                                        <a style="color: white;" href="/">Home <i class="pe-7s-angle-right"></i></a>
+                                    </li>
+                                    <li style="color: white;">Danh sách sản phẩm</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shop-area section-space-y-axis-100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 order-lg-1 order-2 pt-10 pt-lg-0">
+                            <div class="sidebar-area">
+                                <div class="widgets-searchbox mb-9">
+                                    @* <form id="widgets-searchbox" action="#">
+                                        <input class="input-field" type="text" placeholder="Search">
+                                        <button class="widgets-searchbox-btn" type="submit">
+                                            <i class="pe-7s-search"></i>
+                                        </button>
+                                    </form> *@
+                                </div>
+                                <div class="widgets-area mb-9">
+                                    <h2 class="widgets-title mb-5">Sản phẩm được mua nhiều nhất</h2>
+                                    <div class="widgets-item">
+                                        <div class="swiper-container widgets-list-slider">
+                                            <div class="swiper-wrapper">
+                                                @if(lsP != null){
+                                                    @foreach (var item in lsP)
+                                                    {
+                                                        <div class="swiper-slide">
+                                                            <div class="product-list-item">
+                                                                <div class="product-img img-zoom-effect">
+                                                                    <a href="single-product.html">
+                                                                        <img class="img-full" src="~/images/products/@item.Thumb" alt="Product Images">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="product-content">
+                                                                    <a class="product-name" href="single-product.html">@item.ProductName</a>
+                                                                    <div class="price-box pb-1">
+                                                                        <span class="new-price">@item.Price.Value.ToString("#,##0") VNĐ</span>
+                                                                    </div>
+                                                                    <div class="rating-box-wrap">
+                                                                        <div class="rating-box">
+                                                                            <ul>
+                                                                                <li><i class="pe-7s-star"></i></li>
+                                                                                <li><i class="pe-7s-star"></i></li>
+                                                                                <li><i class="pe-7s-star"></i></li>
+                                                                                <li><i class="pe-7s-star"></i></li>
+                                                                                <li><i class="pe-7s-star"></i></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widgets-area">
+                                    <h2 class="widgets-title mb-5">Danh mục</h2>
+                                    <div class="widgets-item">
+                                        <ul class="widgets-tags">
+                                            @if(lsC != null && lsC.Count() > 0){
+                                                foreach (var item in lsC)
+                                                {
+                                                    <li>
+                                                        <a href="javascript:void(0)">@item.CatName</a>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 order-lg-2 order-1">
+                            <div class="product-topbar">
+                                <ul>
+                                    <li class="product-view-wrap">
+                                        <ul class="nav" role="tablist">
+                                            <li class="grid-view" role="presentation">
+                                                <a id="grid-view-tab" data-bs-toggle="tab" href="#grid-view" role="tab" aria-selected="true">
+                                                    <i class="fa fa-th"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-view" role="presentation">
+                                                <a class="active" id="list-view-tab" data-bs-toggle="tab" href="#list-view" role="tab" aria-selected="true">
+                                                    <i class="fa fa-th-list"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="page-count">
+                                        <span>@Model.Count()</span> sản phẩm trong <span>@Model.Count()</span>
+                                    </li>
+                                    <li class="short">
+                                        <select class="nice-select wide rounded-0">
+                                            @* <option value="1">Sort by Default</option>
+                                            <option value="2">Sort by Popularity</option>
+                                            <option value="3">Sort by Rated</option>
+                                            <option value="4">Sort by Latest</option>
+                                            <option value="5">Sort by High Price</option>
+                                            <option value="6">Sort by Low Price</option> *@
+                                        </select>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content text-charcoal pt-8">
+                                <div class="tab-pane fade show active" id="list-view" role="tabpanel" aria-labelledby="list-view-tab">
+                                    <div class="product-list-view with-sidebar row">
+                                        @if(Model != null){
+                                            foreach (var item in Model)
+                                            {
+                                                string url = $"{item.Alias}-{item.ProductId}.html";
+                                                <div class="col-12 pt-6">
+                                                    <div class="product-item">
+                                                        <div class="product-img img-zoom-effect">
+                                                            <a href="single-product.html">
+                                                                <img class="img-full" src="~/images/products/@item.Thumb" alt="@item.Title">
+                                                            </a>
+                                                            <div class="product-add-action">
+                                                                <ul>
+                                                                    <li class="add-to-cart">
+                                                                        <a href="javascript:void(0)">
+                                                                            <i class="pe-7s-cart"></i> 
+                                                                        </a>
+                                                                        <input hidden asp-for = "@item.ProductId" id="p">
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="compare.html">
+                                                                            <i class="pe-7s-shuffle"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="wishlist.html">
+                                                                            <i class="pe-7s-like"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-content align-self-center">
+                                                            <a class="product-name pb-2" href="@url">@item.ProductName</a>
+                                                            <div class="price-box pb-1">
+                                                                <span class="new-price">@item.Price.Value.ToString("#,##0") VNĐ</span>
+                                                            </div>
+                                                            <div class="rating-box pb-2">
+                                                                <ul>
+                                                                    <li><i class="pe-7s-star"></i></li>
+                                                                    <li><i class="pe-7s-star"></i></li>
+                                                                    <li><i class="pe-7s-star"></i></li>
+                                                                    <li><i class="pe-7s-star"></i></li>
+                                                                    <li><i class="pe-7s-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                            <p class="short-desc mb-0">Cam kết sản phẩm đảm bảo chất lượng.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pagination-area pt-10">
+                                <ul class="pagination justify-content-center">
+                                    <pager class="pager-container" list="@Model" options="@PagedListRenderOptions.Bootstrap4PageNumbersOnly" asp-area="" asp-controller="Product"
+                                        asp-action="Index" />
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $(function(){
+                $(".add-to-cart").click(function() {
+                    var productid = $('#p').val();
+                    $.ajax({
+                        url: '/api/cart/add',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            productID: productid,
+                            amount: 1
+                        },
+                        success: function(response){
+                            loadHeaderCart();
+                            location.reload();
+                        },
+                        error: function(erorr){
+                            alert("absfkjbasfjkab: " + erorr.responseText);
+                        }
+                    })
+                })
+            })
+            function loadHeaderCart(){
+                $('miniCart').load("/AjaxContent/HeaderCart");
+                $('numberCart').load("/AjaxContent/NumberCart");
+            }
+        })
+    </script>
+}
